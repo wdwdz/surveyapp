@@ -1,0 +1,60 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<h2>Learning Environment Survey</h2>
+<h4>{{ error }}</h4>
+
+<form method="POST">
+    {% csrf_token %} 
+    <!-- {{ form.as_p }} -->
+    <!-- <label for="title">Title</label>
+    <input type="text" name="title" id="title" required> -->
+    <div> 
+    <p>1. What is your leanring mode now?</p>
+    {% for element in form.learningmode %}
+    {{ element }}
+    {% endfor %}
+    </div>
+    <p>2. What is your leanring activity now?</p>
+    {% for element in form.learningactivity %}
+    {{ element }}
+    {% endfor %}
+    <p>3. I am satisfied with the ambient environment such as light, temperature and acoustic condition here. </p>
+    {% for element in form.ambient %}
+    {{ element }}
+    {% endfor %}
+    <p>4. I am satisfied with the spatial environment such as layout, space height here. </p>
+    {% for element in form.spatial %}
+    {{ element }}
+    {% endfor %}
+    <p>5. I am satisfied with the ergonomic condition such as furniture, color, material here.</p>
+    {% for element in form.ergonomic %}
+    {{ element }}
+    {% endfor %}
+    <p>6. I am satisfied with the infrastructure such as wifi, charger here. </p>
+    {% for element in form.infrastructure %}
+    {{ element }}
+    {% endfor %}
+    <p>I am satisfied with the social environment here such as other students. </p>
+    {% for element in form.people %}
+    {{ element }}
+    {% endfor %}
+    <p>I am satisfied with rules here such as "no noise allowed" and "social distance". </p>
+    {% for element in form.rules %}
+    {{ element }}
+    {% endfor %}
+    <p>I am satisfied with my individual environment here such as my laptop and pad. </p>
+    {% for element in form.individual %}
+    {{ element }}
+    {% endfor %}
+    <p>I am satisfied with virtual learning environment now such as Canvas and google.</p>
+    {% for element in form.virtual %}
+    {{ element }}
+    {% endfor %}
+    <!-- {{ form.gender }} -->
+    <br>
+    <button type="submit">Create</button>
+</form>
+
+{% endblock %}

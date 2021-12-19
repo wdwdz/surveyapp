@@ -1,0 +1,41 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <h2>Sign Up</h2>
+        <h4>Please read the <a href="{% url 'about' %}">Consent Form</a> carefully before signing up.</h3>
+    </div>
+</div>
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">NetID</label>
+                <input type="text" name="username" class="form-control" id="username" aria-describedby="usernameHelp">
+                <small id="usernameHelp" class="form-text text-muted">Please use your NetId, let us know if it was taken</small>
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" name="password1" class="form-control" id="password1">
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" class="form-control" id="password2">
+            </div>
+            <div class="text-center">
+               
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>          
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

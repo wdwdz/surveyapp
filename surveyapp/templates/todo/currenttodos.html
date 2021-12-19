@@ -1,0 +1,19 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<h2>You have {{ count }} survey {{ num_messages|pluralize }} to do today. </h1>
+<h4>Please click <a href="{% url 'createtodos' %}">Create</a> to complete the survey when you studied in some place for more than 30 minutes. </h2>
+
+<!-- <ul>
+    {% for todo in todos %}
+    <li>{% if todo.learningmode == 'formal' %}</b>{% endif %}
+        {{ todo.learningmode }}
+        {% if todo.learningmode == 'formal' %}</b>{% endif %}
+    </li>
+    {% endfor %}
+
+</ul> -->
+
+
+
+{% endblock %}

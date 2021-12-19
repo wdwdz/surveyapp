@@ -1,0 +1,66 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="icon" type="image/png"  href="{% static 'todo/logo' %}">
+    <title>Learning Environments Survey</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+         <img src="{% static 'todo/logo.png' %}" width="30" height="30" class="d-inline-block align-top">
+        <span>Learning Environments Survey</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+{% if user.is_authenticated %}
+Hello, {{ user.username }}
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item {{ current }}">
+        <a class="nav-link" href="{% url 'currenttodos' %}">Current</a>
+    </li>
+    <li class="nav-item {{ create }}">
+        <a class="nav-link" href="{% url 'createtodos' %}">Create</a>
+    </li>
+</ul>
+{% endif %}
+<ul class="navbar-nav ml-auto">
+    {% if user.is_authenticated %}
+        </li class="nav-item">
+            <form id="signOutBtn" method="POST" action="{% url 'logoutuser' %}">
+                {% csrf_token %}
+                <button  class="btn btn-outline-dark" type="submit">Logout</button>
+            </form>
+        </li> 
+    {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'signupuser' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'loginuser' %}">Login</a>
+        </li>
+    {% endif %}
+</ul>
+    </div>
+</div>
+</nav>
+
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+
+</body>
+</html>
